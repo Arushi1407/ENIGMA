@@ -1,0 +1,51 @@
+import math
+
+def is_coprime(a, m):
+    return math.gcd(a, m) == 1
+
+def modular_inverse(a, m):
+    return pow(a, -1, m)
+
+def affine_encrypt(plaintext, a, b):
+    if not is_coprime(a, 95):
+        raise ValueError("a and 95 must be coprime.")
+    ciphertext = []
+    for char in plaintext:
+        char_code = ord(char)
+        if 32 <= char_code <= 126:
+            x = char_code - 32
+            y = (a * x + b) % 95
+            encrypted_char = chr(y + 32)
+            ciphertext.append(encrypted_char)
+        else:
+            ciphertext.append(char)
+    return ''.join(ciphertext)
+
+def affine_decrypt(ciphertext, a, b):
+    if not is_coprime(a, 95):
+        raise ValueError("a and 95 must be coprime.")
+    a_inv = modular_inverse(a, 95)
+    plaintext = []
+    for char in ciphertext:
+        char_code = ord(char)
+        if 32 <= char_code <= 126:
+            y = char_code - 32
+            x = (a_inv * (y - b)) % 95
+            decrypted_char = chr(x + 32)
+            plaintext.append(decrypted_char)
+        else:
+            plaintext.append(char)
+    return ''.join(plaintext)
+
+# Example usage:
+plaintext = "Hello, World! 123"
+a = 7  # 7 and 95 are coprime
+b = 10
+
+# Encrypt the plaintext
+encrypted = affine_encrypt(plaintext, a, b)
+print("Encrypted:", encrypted)
+
+# Decrypt the ciphertext
+decrypted = affine_decrypt(encrypted, a, b)
+print("Decrypted:", decrypted)
