@@ -1,9 +1,15 @@
 install MPLAB x IDE 
-it will prompt you to install X32 compiler
+https://www.microchip.com/en-us/tools-resources/develop/mplab-x-ide#tabs
+
+it will prompt you to install X32 compiler ( no need to install other compilers)
+whole thing will take approx 22gb
+
+
 file->new project->microchip embedded->select PIC32MX250F128B->select simulation
 on the left side you see a tab named projects
 inside the folder Header files add fonts.h, i2cmaster.h and ssd1306.h (they are all c header files)
 inside the folder source files add newmain.c , i2cmaster.c and ssd1306.c (they are all c source files)
+click on the hammer to build the project 
 
 whatever changes you want to do, do inside newmain.c
 when reading newmain.c whatever functions you cant find there you can find inside the other source files
