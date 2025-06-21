@@ -5,13 +5,7 @@
  * Created on June 20, 2025, 6:35 PM
  */
 
-/*
- * main.c - PIC32MX equivalent of your Arduino code
- * Functionality: 
- *  - Read rotor values using button and analog input
- *  - Receive rotor config and messages over UART
- *  - Display current rotor config, plain and encrypted messages on OLED
- */
+
 
 #include <xc.h>
 #include <stdio.h>
